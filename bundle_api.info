@@ -2,3 +2,9 @@ name = Bundle API
 description = "Provides a consistent API for working with bundles."
 core = 7.x
 package = API
+
+; Information added by drush on 2013-02-06
+version = "unknown"
+project = "bundle_api"
+datestamp = "1360163296"
+
