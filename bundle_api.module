@@ -55,8 +55,8 @@ function bundle_api_get_bundle($entity_key = NULL, $bundle_key = NULL) {
         $bundles[$entity_type] = array();
         foreach (array_keys($entity_def['bundles']) as $key) {
           $results = $load_function($entity_type, $key);
-          foreach (module_implements('bundle_load') as $module) {
-            $function = $module . "_bundle_load";
+          foreach (module_implements('bundle_api_load') as $module) {
+            $function = $module . "_bundle_api_load";
             if (is_callable($function)) {
               $function($results, $entity_type, $key);
             }
@@ -88,7 +88,7 @@ function bundle_api_entity_info_alter(&$info) {
   );
 }
 
-function bundle_api_bundle_load($bundle_def, $entity, $bundle_key) {
+function bundle_api_bundle_api_load($bundle_def, $entity, $bundle_key) {
   $bundle_def->entity_type = $entity;
   $bundle_def->bundle_name = $bundle_key;
 }
