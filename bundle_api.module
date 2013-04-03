@@ -88,9 +88,17 @@ function bundle_api_entity_info_alter(&$info) {
   );
 }
 
-function bundle_api_bundle_api_load($bundle_def, $entity, $bundle_key) {
+function bundle_api_bundle_api_load(&$bundle_def, $entity, $bundle_key) {
+  $convert = FALSE;
+  if (is_array($bundle_def)) {
+    $convert = TRUE;
+    $bundle_def = (object) $bundle_def;
+  }
   $bundle_def->entity_type = $entity;
   $bundle_def->bundle_name = $bundle_key;
+  if ($convert) {
+    $bundle_def = (array) $bundle_def;
+  }
 }
 
 function bundle_api_load_content_type($entity_type, $bundle_name) {
